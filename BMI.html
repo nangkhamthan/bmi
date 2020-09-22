@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>BMI CALCULATOR</title>
+	<script type="text/javascript" src="vue.min.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<style>
+		div.grid div{
+			padding: 20px;
+			font-size: 18px;
+			text-align: center;
+			color: #fff;
+			float: left;
+
+		}
+		div.grid{
+			display: grid;
+			grid-template-columns: auto auto auto auto;
+
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div id="app" style="background-color: skyblue; padding: 10px;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<h1 align="center">{{message}}</h1>
+					<div >
+
+		<form name="myForm" align="center">
+			
+			<label for="weight">Your Weight:  </label>
+			<input type="number" name="weight" id="weight" v-model="pound">(pounds)<br><br>
+			<label for="heightF">Your Height:</label>
+			<input type="number" name="heightF" id="heightF" v-model="feet">(feet)<br><br>
+			<label for="heightI">Your Height:</label>
+			<input type="number" name="heightI" id="heightI" v-model="inch">(inch)<br><br>
+			<div class="form-group">
+						<button  v-on:click="calculate" style="background-color: lightblue; ">CALCULATE BMI</button>
+					</div>
+		</form>
+
+	</div>
+
+					<div class="grid">
+						<div style="background-color: blue; width: 200px;">Underweight <br><18.5</div>
+						<div style="background-color: green;width: 200px;">Normal Weight <br>between 18.5-25</div>
+						<div style="background-color: orange;width: 200px;">Over Weight <br>between 25-30</div>
+						<div style="background-color: red;width: 200px;margin-right: 1000px;">Obesity<br>>30</div>
+					</div><br><br><br>
+					<label for="bmi">Your BMI:</label>
+					<input type="text" id="bmi" v-model="result">
+				</div>
+			</div>
+		</div>
+	</div>
+</fieldset>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				message: 'BMI CALCULATOR',
+				feet:'',
+				inch:'',
+				pound:'',
+				result:''
+			},
+			methods :{
+				calculate: function () {
+					var feet=parseInt(this.feet);
+					var inch=parseInt(this.inch);
+					var pound=parseInt(this.pound);
+					var height =(feet*12)+inch;
+					var bmi=((pound/(height*height))*703).toFixed(1);
+					this.result=bmi;
+					if (bmi<18.5) {
+						$('#bmi').css('background-color','blue')
+					}else if (bmi<25) {
+						$('#bmi').css('background-color','green')
+					}else if (bmi<30) {
+						$('#bmi').css('background-color','orange')
+					}else {
+						$('#bmi').css('background-color','red')
+					}	
+				}
+			}
+		})
+	</script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+methods: {
+				bmiCalculation: function(){
+					var feets = parseInt(this.feets);
+					var inches = parseInt(this.inches);
+					var inches2 = parseInt(this.feets)*12;
+					var height = inches+inches2;
+					var weight = parseInt(this.weight);
+					var total = ((weight/(height*height))*703).toFixed(1);
+					this.bmi=total;
+					if(total<18.5) {
+						$("#bmi").css("background-color","blue");
+					}
+					else if(total>=18.5 && total<24.9 ){
+						$("#bmi").css("background-color","green");
+					}
+					else if(total>=25 && total<29.9 ){
+						$("#bmi").css("background-color","yellow");
+					}else {
+						$("#bmi").css("background-color","red");
+					}
+				}
+			}

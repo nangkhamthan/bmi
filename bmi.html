@@ -59,6 +59,7 @@
 
 
 		 <h2>Your BMI   {{ bmiCalculation }}</h2>
+		 <div><input type="text" id="bmi" v-model="result"></div>
 
 			<br><br>
 
@@ -82,7 +83,8 @@
 			  
 			    feet:'',
 			    inches:'',
-			    weight:''
+			    weight:'',
+			    result:''
 			  },
 		computed: {
     	bmiCalculation: function() {
@@ -96,18 +98,26 @@
        var height =((feet*12)+inches)*((feet*12)+inches);
 
 
-      var bmi = ((weight/height)*703)
+      var bmi = ((weight/height)*703).toFixed(2);
+      this.result=bmi;
+
       if(bmi < 18.5) {
-        return ' Under weight: ' + bmi.toFixed(2) + 'kg/m2';
+
+      	$('#bmi').css('background-color','blue','Under Weight')
+
+        //return ' Under weight: ' + bmi.toFixed(2) + 'kg/m2';
       }
       else if (bmi >= 18.5 && bmi <25 ) {
-        return 'Normal weight: ' + bmi.toFixed(2) + 'kg/m2';
+      	$('#bmi').css('background-color','green')
+        //return 'Normal weight: ' + bmi.toFixed(2) + 'kg/m2';
       }
       else if (bmi >= 25 && bmi <29 ) {
-        return 'Over weight:   ' + bmi.toFixed(2) + 'kg/m2';
+      	$('#bmi').css('background-color','yellow')
+        //return 'Over weight:   ' + bmi.toFixed(2) + 'kg/m2';
       }
       else if (bmi >=30 ) {
-        return 'Obesity:   ' + bmi.toFixed(2) + 'kg/m2';
+      	$('#bmi').css('background-color','red')
+        //return 'Obesity:   ' + bmi.toFixed(2) + 'kg/m2';
       }
     }
   }
