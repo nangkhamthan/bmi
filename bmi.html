@@ -53,13 +53,21 @@
 							<span>{{weight}}</span>pounds
 						</div>
 					</div>
+					<div class="row">
+						<div class="col-md-2">
+							<label><h3>Your BMI</h3></label>
+						</div>
+						<div class="col-md-6">
+							<input type="text" id="bmi" v-model="result">
+						</div>
+					</div>
 
 				</div>
 			</div>
 
 
-		 <h2>Your BMI   {{ bmiCalculation }}</h2>
-		 <div><input type="text" id="bmi" v-model="result"></div>
+		 <h2>{{ bmiCalculation }}</h2>
+		
 
 			<br><br>
 
